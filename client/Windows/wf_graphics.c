@@ -66,6 +66,7 @@ HBITMAP wf_create_dib(wfContext* wfc, UINT32 width, UINT32 height, UINT32 srcFor
 	return bitmap;
 }
 
+// 创建一个bitmap
 wfBitmap* wf_image_new(wfContext* wfc, UINT32 width, UINT32 height, UINT32 format, const BYTE* data)
 {
 	HDC hdc;

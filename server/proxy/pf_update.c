@@ -113,6 +113,7 @@ static BOOL pf_client_end_paint(rdpContext* context)
 	return TRUE;
 }
 
+// 更新bitmap
 static BOOL pf_client_bitmap_update(rdpContext* context, const BITMAP_UPDATE* bitmap)
 {
 	pClientContext* pc = (pClientContext*)context;

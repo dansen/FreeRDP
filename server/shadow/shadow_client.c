@@ -1739,6 +1739,7 @@ out:
  *
  * @return TRUE on success (or nothing need to be updated)
  */
+// 更新rdp数据
 static BOOL shadow_client_send_surface_update(rdpShadowClient* client, SHADOW_GFX_STATUS* pStatus)
 {
 	BOOL ret = TRUE;
@@ -2171,6 +2172,8 @@ static DWORD WINAPI shadow_client_thread(LPVOID arg)
 	WINPR_ASSERT(rc);
 	rc = freerdp_settings_set_bool(settings, FreeRDP_SupportMonitorLayoutPdu, TRUE);
 	WINPR_ASSERT(rc);
+
+    // 服务器与rdp客户端交互
 	while (1)
 	{
 		HANDLE events[MAXIMUM_WAIT_OBJECTS] = { 0 };
@@ -2452,6 +2455,7 @@ out:
 	return 0;
 }
 
+// 收到一个freerdp客户端的连接请求
 BOOL shadow_client_accepted(freerdp_listener* listener, freerdp_peer* peer)
 {
 	rdpShadowClient* client;
@@ -2474,6 +2478,7 @@ BOOL shadow_client_accepted(freerdp_listener* listener, freerdp_peer* peer)
 	client = (rdpShadowClient*)peer->context;
 	WINPR_ASSERT(client);
 
+    // 创建了一个线程
 	if (!(client->thread = CreateThread(NULL, 0, shadow_client_thread, client, 0, NULL)))
 	{
 		freerdp_peer_context_free(peer);
